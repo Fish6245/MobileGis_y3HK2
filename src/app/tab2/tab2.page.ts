@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tab2',
@@ -7,11 +8,24 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class Tab2Page {
-  totalFeatures = 1540;
-  totalWards = 312;
-  totalDistricts = 22;
+  totalFeatures = 0;
+  totalWards = 0;
+  totalDistricts = 0;
+
+  warnings: any[] = [];
+
+  constructor(private http: HttpClient) {}
 
   ionViewWillEnter() {
-    // sau này thay API GIS (Flask / PostGIS / PHP)
+    this.loadGISReport();
+  }
+
+  loadGISReport() {
+    this.http.get<any>('assets/mock-gis.json').subscribe((data) => {
+      this.totalFeatures = data.totalFeatures;
+      this.totalWards = data.totalWards;
+      this.totalDistricts = data.totalDistricts;
+      this.warnings = data.warnings;
+    });
   }
 }

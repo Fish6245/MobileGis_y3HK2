@@ -54,23 +54,20 @@
     </ion-card-header>
 
     <ion-list>
-      <ion-item>
-        <ion-icon name="warning" color="danger" slot="start"></ion-icon>
-        <ion-label>Khu vực thiếu geometry</ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="alert-circle" color="warning" slot="start"></ion-icon>
-        <ion-label>Dữ liệu chưa đồng bộ PostGIS</ion-label>
-      </ion-item>
-
-      <ion-item>
+      <ion-item *ngFor="let w of warnings">
         <ion-icon
-          name="checkmark-circle"
-          color="success"
+          [name]="
+          w.type === 'danger'
+            ? 'warning'
+            : w.type === 'warning'
+            ? 'alert-circle'
+            : 'checkmark-circle'
+        "
+          [color]="w.type"
           slot="start"
         ></ion-icon>
-        <ion-label>Dữ liệu GIS đã tải thành công</ion-label>
+
+        <ion-label>{{ w.message }}</ion-label>
       </ion-item>
     </ion-list>
   </ion-card>
