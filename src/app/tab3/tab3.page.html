@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Sự cố </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Báo cáo sự cố </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked"> Tên sự cố </ion-label>
+
+        <ion-input [(ngModel)]="title" name="title"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"> Mô tả </ion-label>
+
+        <ion-textarea [(ngModel)]="description" name="description">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" color="success" (click)="addIncident()">
+        Thêm sự cố
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Danh sách sự cố -->
+
+  <ion-list>
+    <ion-item *ngFor="let item of incidents; let i = index">
+      <ion-label>
+        <h2>{{ item.title }}</h2>
+
+        <p>{{ item.description }}</p>
+      </ion-label>
+
+      <ion-button color="danger" fill="clear" (click)="deleteIncident(i)">
+        Xóa
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
