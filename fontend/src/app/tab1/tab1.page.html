@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Bản đồ giao thông </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="title">Bản đồ</div>
+
+  <div class="map-container">
+    <div id="map"></div>
+    <ion-button expand="block" color="success" (click)="locateUser()">
+      📍 Lấy vị trí của tôi
+    </ion-button>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Sự cố gần đây </ion-card-title>
+    </ion-card-header>
+
+    <ion-list>
+      <ion-item *ngFor="let item of recentIncidents">
+        <ion-label> {{item.title}} tại {{item.description}} </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
